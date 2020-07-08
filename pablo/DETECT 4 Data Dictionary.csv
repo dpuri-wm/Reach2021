@@ -1,0 +1,421 @@
+VARIABLE,DATA TYPE,DESCRIPTION,VALUES,SOURCE,NOTES
+ORIS_ID,Numeric,ORIS ID,,Original,
+SCREEN_ID,Character,Screening ID,,Original,
+MONTH,Numeric,Month,"0, 1, 3, 6, 12, 24",Original,
+TID,Character,T ID,,Original,
+VISIT_DATE,Date,Visit Date,,Original,
+GENDER,Numeric,Gender,"1 = Male
+2 = Female",Original,
+RACE,Numeric,Race,"1 = American Indian or Alaska Native
+2 = Asian
+3 = Black or African American
+4 = Native Hawaiian or Other Pacific Islander
+5 = White
+6 = Other",Original,
+HISPANIC,Numeric,Hispanic,1 = Yes; 0 = No,Original,
+DOB,Date,Date of birth,,Original,
+HEIGHT_IN,Numeric,Height (in),Range: 0+,Original,
+WEIGHT_LB,Numeric,Weight (lb),Range: 0+,Original,
+BSA,Numeric,Body Surface Area (BSA) (m2),Range: 0+,Original,(([weight])^(0.425)*([height])^(0.725))*0.007184
+MESA,Numeric,MRI LV SAX CINE STACKS: MESA,1 = Yes; 0 = No,Original,
+HR_MESA,Numeric,MESA heart rate,Range: 0+,Original,
+SYS_BP_MESA,Numeric,MESA systolic blood pressure,Range: 0+,Original,
+DIA_BP_MESA,Numeric,MESA diastolic blood pressure,Range: 0+,Original,
+HTN_SBP,Numeric,Hypertension due to systolic blood pressure > 130,1 = Yes; 0 = No,SYS_BP,
+HTN_DBP,Numeric,Hypertension due to diastolic blood pressure > 80,1 = Yes; 0 = No,DIA_BP,
+HTN_MED,Numeric,Taking hypertension medication,1 = Yes; 0 = No,"ACE_INHIB, BETABLOCK, CCHANBLOCK, ANGIOTENS,
+VASOD, DIURETICS",
+HTNNEW,Numeric,Hypertension (SBP > 130 or DBP > 80 or taking hypertensive medication),1 = Yes; 0 = No,"HTN_SBP, HTN_DBP, HTN_MED",
+CREAT,Numeric,Creatinine,Range: 0+,Original,
+TROP,Numeric,Troponin I,Range: 0+,Original,
+BNP,Numeric,BNP,Range: 0+,Original,
+HGB,Numeric,Hgb,Range: 0+,Original,
+HCT,Numeric,Hct,Range: 0+,Original,
+DATE_LWHF,Date,Date the Living with Heart Failure Questionnaire was completed,,Original,
+SWELLING,Numeric,"1. Causing swelling in your ankles, legs, etc?","0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+HOUSEWORK,Numeric,2. Making your work around the house or yard difficult?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+FRIENDS,Numeric,"3. Making or relating to, or doing things with your
+friends or family difficult?","0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+REST,Numeric,4. Making you sit or lie down to rest during the day?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+TIRED,Numeric,"5. Making you tired, fatigued, or low on energy?","0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+EAR_LIV,Numeric,6. Making your working to earn a living difficult?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+WALKING,Numeric,7. Making your walking about or climbing stairs difficult?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+SOB,Numeric,8. Making you short of breath?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+SLEEP,Numeric,9. Making your sleeping at night difficult?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+FOODS,Numeric,10. Making you eat less of the foods you like?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+PLACES,Numeric,11. Making your going places away from home difficult?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+SEX,Numeric,12. Making your sexual activities difficult?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+SPORTS,Numeric,"13. Making your recreational past-times, sports or
+hobbies difficult?","0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+REMEMBER,Numeric,"14. Making it difficult for you to concentrate or
+remember things?","0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+MED_EFFECT,Numeric,15. Giving you side effects from your medicines?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+WORRY,Numeric,16. Making you worry?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+DEPRESSED,Numeric,17. Making you feel depressed?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+COSTING,Numeric,18. Costing you money for medical care?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+LOSS_CONTROL,Numeric,19. Making you feel a loss of self-control in your life?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+HOSPITAL,Numeric,20. Making you stay in the hospital?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+BURDEN,Numeric,21. Making you feel you are a burden to your family?,"0= No, 1=Very Little, 2-4,
+5=Very Much",Original,
+LIVING_WITH_HEART_FA_V_1,Numeric,Heart Failure Questionnaire completion status,"0 = Incomplete
+1 = Unverified
+2 = Complete",Original,
+HFQSUM5,Numeric,"MLHFQ sum of items 1, 4, 5, 7, 8",Range: 0-25,"SWELLING, REST, TIRED, WALKING, SOB",
+HFQSUM4,Numeric,"MLHFQ sum of items 4, 5, 7, 8",Range: 0-20,"REST, TIRED, WALKING, SOB",
+HFQITEMS,Numeric,Number of MLHFQ items answered,Range: 0-21,"SWELLING, HOUSEWORK, …., BURDEN",
+HFQTOTAL,Numeric,MLHFQ sum of all items (1-21),Range: 0-105,"SWELLING, HOUSEWORK, …., BURDEN",Missing items treated as a 0.
+HFQ_FINANCIAL,Numeric,MLHFQ Financial Burden Score,Range: 0-10,"EAR_LIV, COSTING",Missing items treated as a 0.
+HFQ_FATIGUE,Numeric,MLHFQ Fatigue Score,Range: 0-10,"REST, TIRED",Missing items treated as a 0.
+HFQ_DAILYLIV,Numeric,MLHFQ Activities of Daily Living Score,Range: 0-15,"HOUSEWORK, WALKING, PLACES",Missing items treated as a 0.
+HFQ_SLEEPDEP,Numeric,MLHFQ Sleep Deprivation Score,Range: 0-10,"SLEEP, REMEMBER",Missing items treated as a 0.
+HFQ_CHEMOEFF,Numeric,MLHFQ Direct Effects of Chemo Score,Range: 0-15,"FOODS, MED_EFFECT, HOSPITAL",Missing items treated as a 0.
+HFQ_PLEASURE,Numeric,MLHFQ Pleasure Activities Score,Range: 0-15,"FRIENDS, SEX, SPORTS",Missing items treated as a 0.
+HFQ_HEARTFAIL,Numeric,MLHFQ Heart Failure Symptoms Score,Range: 0-10,"SWELLING, SOB",Missing items treated as a 0.
+HFQ_EMOTIONAL,Numeric,MLHFQ Emotional Burden Score,Range: 0-20,"WORRY, DEPRESSED, LOSS_CONTROL, BURDEN",Missing items treated as a 0.
+HFQTOTAL_IMP,Numeric,MLHFQ sum of all items (1-21) (Imputed),Range: 0-105,"SWELLING, HOUSEWORK, …., BURDEN",Missing items replaced with mean of existing items.
+HFQ_FINANCIAL_IMP,Numeric,MLHFQ Financial Burden Score (Imputed),Range: 0-10,"EAR_LIV, COSTING",Missing items replaced with mean of existing items.
+HFQ_FATIGUE_IMP,Numeric,MLHFQ Fatigue Score (Imputed),Range: 0-10,"REST, TIRED",Missing items replaced with mean of existing items.
+HFQ_DAILYLIV_IMP,Numeric,MLHFQ Activities of Daily Living Score (Imputed),Range: 0-15,"HOUSEWORK, WALKING, PLACES",Missing items replaced with mean of existing items.
+HFQ_SLEEPDEP_IMP,Numeric,MLHFQ Sleep Deprivation Score (Imputed),Range: 0-10,"SLEEP, REMEMBER",Missing items replaced with mean of existing items.
+HFQ_CHEMOEFF_IMP,Numeric,MLHFQ Direct Effects of Chemo Score (Imputed),Range: 0-15,"FOODS, MED_EFFECT, HOSPITAL",Missing items replaced with mean of existing items.
+HFQ_PLEASURE_IMP,Numeric,MLHFQ Pleasure Activities Score (Imputed),Range: 0-15,"FRIENDS, SEX, SPORTS",Missing items replaced with mean of existing items.
+HFQ_HEARTFAIL_IMP,Numeric,MLHFQ Heart Failure Symptoms Score (Imputed),Range: 0-10,"SWELLING, SOB",Missing items replaced with mean of existing items.
+HFQ_EMOTIONAL_IMP,Numeric,MLHFQ Emotional Burden Score (Imputed),Range: 0-20,"WORRY, DEPRESSED, LOSS_CONTROL, BURDEN",Missing items replaced with mean of existing items.
+ACE_INHIB,Numeric,Currently using ACE inhibitors,1 = Yes; 0 = No,Original,
+ACE_INHIB_MO,Numeric,ACE inhibitors start month,,Original,
+ACE_INHIB_YR,Numeric,ACE inhibitors start year,,Original,
+DIURETICS,Numeric,Currently using diuretics,1 = Yes; 0 = No,Original,
+DIURETICS_MO,Numeric,Diuretics start month,,Original,
+DIURETICS_YR,Numeric,Diuretics start year,,Original,
+BETABLOCK,Numeric,Currently using beta blockers,1 = Yes; 0 = No,Original,
+BETABLOCK_MO,Numeric,Beta blockers start month,,Original,
+BETABLOCK_YR,Numeric,Beta blockers start year,,Original,
+ANGIOTENS,Numeric,Currently using angiotensin receptor blockers,1 = Yes; 0 = No,Original,
+ANGIOTENS_MO,Numeric,Angiotensin receptor blockers start month,,Original,
+ANGIOTENS_YR,Numeric,Angiotensin receptor blockers start year,,Original,
+LIP_MOD,Numeric,Currently using lipid modifying agent,1 = Yes; 0 = No,Original,
+LIP_MOD_MO,Numeric,Lipid modifying agents start month,,Original,
+LIP_MOD_YR,Numeric,Lipid modifying agents start year,,Original,
+STATINS,Numeric,Currently using statins,1 = Yes; 0 = No,Original,
+STATIN_DOSE,Numeric,Statins dose (mg),,Original,
+STATIN_MO,Numeric,Statins start month,,Original,
+STATIN_YR,Numeric,Statins start year,,Original,
+DOXO,Numeric,Doxorubicin currently being used,1 = Yes; 0 = No,Original,
+DAUNO,Numeric,Daunorubicin currently being used,1 = Yes; 0 = No,Original,
+EPIRU,Numeric,Epirubicin currently being used,1 = Yes; 0 = No,Original,
+DOXI,Numeric,Doxil currently being used,1 = Yes; 0 = No,Original,
+TAXO,Numeric,Taxol currently being used,1 = Yes; 0 = No,Original,
+TAXOT,Numeric,Taxotere currently being used,1 = Yes; 0 = No,Original,
+DOCET,Numeric,Docetaxel currently being used,1 = Yes; 0 = No,Original,
+CYTOX,Numeric,Cytoxin currently being used,1 = Yes; 0 = No,Original,
+HERCEP,Numeric,Herceptin currently being used,1 = Yes; 0 = No,Original,
+LAPAT,Numeric,Lapatinib currently being used,1 = Yes; 0 = No,Original,
+TYKER,Numeric,Tykerb currently being used,1 = Yes; 0 = No,Original,
+MITOX,Numeric,Mitoxantrone currently being used,1 = Yes; 0 = No,Original,
+SUNIT,Numeric,Sunitinib currently being used,1 = Yes; 0 = No,Original,
+IDARUB,Numeric,Idarubicin currently being used,1 = Yes; 0 = No,Original,
+FU_5,Numeric,5-Fluorouracil currently being used,1 = Yes; 0 = No,Original,
+BUSULF,Numeric,Busulfan currently being used,1 = Yes; 0 = No,Original,
+CISPLAT,Numeric,Cisplatin currently being used,1 = Yes; 0 = No,Original,
+CYCLOPHOS,Numeric,Cyclophosphamide currently being used,1 = Yes; 0 = No,Original,
+IFOSFAM,Numeric,Ifosfamide currently being used,1 = Yes; 0 = No,Original,
+MITOXAN,Numeric,Mitoxantrone currently being used,1 = Yes; 0 = No,Original,
+VINBLAST,Numeric,Vinblastine currently being used,1 = Yes; 0 = No,Original,
+VINCRIST,Numeric,Vincristine currently being used,1 = Yes; 0 = No,Original,
+INTERFER,Numeric,Interferon-alpha currently being used,1 = Yes; 0 = No,Original,
+INTERLEUK,Numeric,Interleukin-2 currently being used,1 = Yes; 0 = No,Original,
+BEVACIZ,Numeric,Bevacizumab currently being used,1 = Yes; 0 = No,Original,
+IMATINIB,Numeric,Imatinib currently being used,1 = Yes; 0 = No,Original,
+SORAFEN,Numeric,Sorafenib currently being used,1 = Yes; 0 = No,Original,
+BENDAMUST,Numeric,Bendamustine currently being used,1 = Yes; 0 = No,Original,
+BORTEZ,Numeric,Bortezomib currently being used,1 = Yes; 0 = No,Original,
+CARBO,Numeric,Carboplatin currently being used,1 = Yes; 0 = No,Original,
+CYTARAB,Numeric,Cytarabine currently being used,1 = Yes; 0 = No,Original,
+DACARB,Numeric,Dacarbazine currently being used,1 = Yes; 0 = No,Original,
+ETOPOS,Numeric,Etoposide currently being used,1 = Yes; 0 = No,Original,
+GEMCITA,Numeric,Gemcitabine currently being used,1 = Yes; 0 = No,Original,
+OFATUM,Numeric,Ofatumumab currently being used,1 = Yes; 0 = No,Original,
+PAZOPAN,Numeric,Pazopanib currently being used,1 = Yes; 0 = No,Original,
+RITUXIM,Numeric,Rituximab currently being used,1 = Yes; 0 = No,Original,
+OTH_CHEMO1,Numeric,Other chemotherapy currently being used,1 = Yes; 0 = No,Original,
+DOXO_DOSE,Numeric,Doxorubicin (Adriamycin) cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+DOXO_MO,Numeric,Doxorubicin (Adriamycin) start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+DOXO_YR,Numeric,Doxorubicin (Adriamycin) start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+DAUNO_DOSE,Numeric,Daunorubicin cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+DAUNO_MO,Numeric,Daunorubicin start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+DAUNO_YR,Numeric,Daunorubicin start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+EPIRU_DOSE,Numeric,Epirubicin cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+EPIRU_MO,Numeric,Epirubicin start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+EPIRU_YR,Numeric,Epirubicin start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+DOXI_DOSE,Numeric,Doxil cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+DOXI_MO,Numeric,Doxil start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+DOXI_YR,Numeric,Doxil start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+TAXO_DOSE,Numeric,Taxol (Paclitaxel) cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+TAXO_MO,Numeric,Taxol (Paclitaxel) start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+TAXO_YR,Numeric,Taxol (Paclitaxel) start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+TAXOT_DOSE,Numeric,Taxotere cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+TAXOT_MO,Numeric,Taxotere start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+TAXOT_YR,Numeric,Taxotere start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+DOCET_DOSE,Numeric,Docetaxel for injection cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+DOCET_MO,Numeric,Docetaxel for injection start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+DOCET_YR,Numeric,Docetaxel for injection start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+CYTOX_DOSE,Numeric,Cytoxin (Cyclophosphamide) cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+CYTOX_MO,Numeric,Cytoxin (Cyclophosphamide) start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+CYTOX_YR,Numeric,Cytoxin (Cyclophosphamide) start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+HERCEP_DOSE,Numeric,Herceptin (Tratsuzumab) cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+HERCEP_MO,Numeric,Herceptin (Tratsuzumab) start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+HERCEP_YR,Numeric,Herceptin (Tratsuzumab) start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+LAPAT_DOSE,Numeric,Lapatinib cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+LAPAT_MO,Numeric,Lapatinib start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+LAPAT_YR,Numeric,Lapatinib start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+TYKER_DOSE,Numeric,Tykerb cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+TYKER_MO,Numeric,Tykerb start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+TYKER_YR,Numeric,Tykerb start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+MITOX_DOSE,Numeric,Mitoxantrone (Novantrone) cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+MITOX_MO,Numeric,Mitoxantrone (Novantrone) start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+MITOX_YR,Numeric,Mitoxantrone (Novantrone) start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+SUNIT_DOSE,Numeric,Sunitinib (Sutent) cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+SUNIT_MO,Numeric,Sunitinib (Sutent) start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+SUNIT_YR,Numeric,Sunitinib (Sutent) start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+IDARUB_DOSE,Numeric,Idarubicin cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+IDARUB_MO,Numeric,Idarubicin start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+IDARUB_YR,Numeric,Idarubicin start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+FU_5_DOSE,Numeric,5-Fluorouracil cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+FU_5_MO,Numeric,5-Fluorouracil start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+FU_5_YR,Numeric,5-Fluorouracil start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+BUSULF_DOSE,Numeric,Busulfan cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+BUSULF_MO,Numeric,Busulfan start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+BUSULF_YR,Numeric,Busulfan start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+CISPLAT_DOSE,Numeric,Cisplatin cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+CISPLAT_MO,Numeric,Cisplatin start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+CISPLAT_YR,Numeric,Cisplatin start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+CYCLOPHOS_DOSE,Numeric,Cyclophosphamide cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+CYCLOPHOS_MO,Numeric,Cyclophosphamide start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+CYCLOPHOS_YR,Numeric,Cyclophosphamide start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+IFOSFAM_DOSE,Numeric,Ifosfamide cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+IFOSFAM_MO,Numeric,Ifosfamide start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+IFOSFAM_YR,Numeric,Ifosfamide start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+MITOXAN_DOSE,Numeric,Mitoxantrone cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+MITOXAN_MO,Numeric,Mitoxantrone start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+MITOXAN_YR,Numeric,Mitoxantrone start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+VINBLAST_DOSE,Numeric,Vinblastine cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+VINBLAST_MO,Numeric,Vinblastine start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+VINBLAST_YR,Numeric,Vinblastine start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+VINCRIST_DOSE,Numeric,Vincristine cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+VINCRIST_MO,Numeric,Vincristine start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+VINCRIST_YR,Numeric,Vincristine start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+INTERFER_DOSE,Numeric,Interferon-alpha cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+INTERFER_MO,Numeric,Interferon-alpha start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+INTERFER_YR,Numeric,Interferon-alpha start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+INTERLEUK_DOSE,Numeric,Interleukin-2 cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+INTERLEUK_MO,Numeric,Interleukin-2 start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+INTERLEUK_YR,Numeric,Interleukin-2 start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+BEVACIZ_DOSE,Numeric,Bevacizumab cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+BEVACIZ_MO,Numeric,Bevacizumab start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+BEVACIZ_YR,Numeric,Bevacizumab start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+IMATINIB_DOSE,Numeric,Imatinib cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+IMATINIB_MO,Numeric,Imatinib start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+IMATINIB_YR,Numeric,Imatinib start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+SORAFEN_DOSE,Numeric,Sorafenib cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+SORAFEN_MO,Numeric,Sorafenib start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+SORAFEN_YR,Numeric,Sorafenib start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+BENDAMUST_DOSE,Numeric,Bendamustine cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+BENDAMUST_MO,Numeric,Bendamustine start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+BENDAMUST_YR,Numeric,Bendamustine start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+BORTEZ_DOSE,Numeric,Bortezomib cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+BORTEZ_MO,Numeric,Bortezomib start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+BORTEZ_YR,Numeric,Bortezomib start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+CARBO_DOSE,Numeric,Carboplatin cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+CARBO_MO,Numeric,Carboplatin start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+CARBO_YR,Numeric,Carboplatin start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+CYTARAB_DOSE,Numeric,Cytarabine cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+CYTARAB_MO,Numeric,Cytarabine start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+CYTARAB_YR,Numeric,Cytarabine start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+DACARB_DOSE,Numeric,Dacarbazine cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+DACARB_MO,Numeric,Dacarbazine start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+DACARB_YR,Numeric,Dacarbazine start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+ETOPOS_DOSE,Numeric,Etoposide cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+ETOPOS_MO,Numeric,Etoposide start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+ETOPOS_YR,Numeric,Etoposide start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+GEMCITA_DOSE,Numeric,Gemcitabine cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+GEMCITA_MO,Numeric,Gemcitabine start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+GEMCITA_YR,Numeric,Gemcitabine start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+OFATUM_DOSE,Numeric,Ofatumumab cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+OFATUM_MO,Numeric,Ofatumumab start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+OFATUM_YR,Numeric,Ofatumumab start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+PAZOPAN_DOSE,Numeric,Pazopanib cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+PAZOPAN_MO,Numeric,Pazopanib start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+PAZOPAN_YR,Numeric,Pazopanib start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+RITUXIM_DOSE,Numeric,Rituximab cumulative dose (mg),Range: 0+,Original,"For all chemo, dose and start date only recorded if currently taking."
+RITUXIM_MO,Numeric,Rituximab start month,Range: 1-12,Original,"For all chemo, dose and start date only recorded if currently taking."
+RITUXIM_YR,Numeric,Rituximab start year,Range: 1900+,Original,"For all chemo, dose and start date only recorded if currently taking."
+OTHER_CHEMO1,Character,Other chemotherapy name,,Original,"For all chemo, dose and start date only recorded if currently taking."
+OTH_CHEMO1_DOSE,Character,Other chemotherapy cumulative dose,,Original,"For all chemo, dose and start date only recorded if currently taking."
+OTH_CHEMO1_MO,Character,Other chemotherapy start month,,Original,"For all chemo, dose and start date only recorded if currently taking."
+OTH_CHEMO1_YR,Character,Other chemotherapy start year,,Original,"For all chemo, dose and start date only recorded if currently taking."
+ANTHRACYCLINE,Numeric,Currently taking anthracycline,1 = Yes; 0 = No,"DOXO, DAUNO, EPIRU, DOXI, MITOX, IDARUB, MITOXAN",
+TRASTUZUMAB,Numeric,Currently taking trastuzumab,1 = Yes; 0 = No,HERCEP,
+TAXANE,Numeric,Currently taking taxane,1 = Yes; 0 = No,"TAXO, TAXOT, DOCET",
+CYCLO,Numeric,Currently taking cyclophosphamide,1 = Yes; 0 = No,"CYTOX, CYCLOPHOS",
+OTHERCHEMO,Numeric,"Currently taking chemo other than anthracycline, trastuzumab,
+taxane, cyclophosphamide",1 = Yes; 0 = No,"LAPAT, TYKER, SUNIT, FU_5, BUSULF, CISPLAT,
+IFOSFAM, VINBLAST, VINCRIST, INTERFER, INTERLEUK, BEVACIZ, IMATINIB, SORAFEN, BENDAMUST, BORTEZ, CARBO, CYTARAB, DACARB, ETOPOS, GEMCITA, OFATUM, PAZOPAN, RITUXIM, 
+OTH_CHEMO1",
+ANYCHEMO,Numeric,Currently taking any chemo,1 = Yes; 0 = No,"ANTHRACYCLINE, TRASTUZUMAB, TAXANE,
+CYCLO, OTHERCHEMO",
+ANTHRACYCLINE_DOSE,Numeric,Cumulative dose - anthracycline,Range: 0+,"DOXO_DOSE, DAUNO_DOSE, EPIRU_DOSE,
+DOXI_DOSE, MITOX_DOSE, IDARUB_DOSE, MITOXAN_DOSE",
+TRASTUZUMAB_DOSE,Numeric,Cumulative dose - trastuzumab,Range: 0+,HERCEP_DOSE,
+TAXANE_DOSE,Numeric,Cumulative dose - taxane,Range: 0+,"TAXO_DOSE, TAXOT_DOSE, DOCET_DOSE",
+CYCLO_DOSE,Numeric,Cumulative dose - cyclophosphamide,Range: 0+,"CYTOX_DOSE, CYCLOPHOS_DOSE",
+OTHERCHEMO_DOSE,Numeric,"Cumulative dose - chemo other than anthracycline, trastuzumab,
+taxane, cyclophosphamide",Range: 0+,"LAPAT_DOSE, TYKER_DOSE, SUNIT_DOSE, FU_5_DOSE, BUSULF_DOSE, CISPLAT_DOSE, IFOSFAM_DOSE, VINBLAST_DOSE, VINCRIST_DOSE, INTERFER_DOSE, INTERLEUK_DOSE, BEVACIZ_DOSE, 
+IMATINIB_DOSE, SORAFEN_DOSE, BENDAMUST_DOSE, BORTEZ_DOSE, CARBO_DOSE, CYTARAB_DOSE, DACARB_DOSE, ETOPOS_DOSE, GEMCITA_DOSE, OFATUM_DOSE, PAZOPAN_DOSE, RITUXIM_DOSE, OTH_CHEMO1_DOSE",
+ANYCHEMO_DOSE,Numeric,Cumulative dose - any chemo,Range: 0+,"ANTHRACYCLINE_DOSE, TRASTUZUMAB_DOSE,
+TAXANE_DOSE, CYCLO_DOSE, OTHERCHEMO_DOSE",
+PRED,Numeric,Prednisone currently being used,1 = Yes; 0 = No,Original,
+DECAD_DOSE,Numeric,Decadron dose (mg),Range: 0+,Original,
+DECAD_MO,Numeric,Decadron start month,Range: 1-12,Original,
+DECAD_YR,Numeric,Decadron start year,Range: 1900+,Original,
+DEXAM_DOSE,Numeric,Dexamethasone dose (mg),Range: 0+,Original,
+DEXAM_MO,Numeric,Dexamethasone start month,Range: 1-12,Original,
+DEXAM_YR,Numeric,Dexamethasone start year,Range: 1900+,Original,
+G_CSF_DOSE,Numeric,Neupogen dose (mg),Range: 0+,Original,
+G_CSF_MO,Numeric,Neupogen start month,Range: 1-12,Original,
+G_CSF_YR,Numeric,Neupogen start year,Range: 1900+,Original,
+PRED_DOSE,Numeric,Prednisone dose (mg),Range: 1900+,Original,
+PRED_MO,Numeric,Prednisone start month,Range: 1900+,Original,
+PRED_YR,Numeric,Prednisone start year,Range: 1900+,Original,
+PHENER,Numeric,Phenergan currently being used,1 = Yes; 0 = No,Original,
+VICO,Numeric,Vicodin currently being used,1 = Yes; 0 = No,Original,
+VIOX,Numeric,Vioxx currently being used,1 = Yes; 0 = No,Original,
+TRAM,Numeric,Tramadol currently being used,1 = Yes; 0 = No,Original,
+MORPH,Numeric,Morphine patch currently being used,1 = Yes; 0 = No,Original,
+CODE,Numeric,Codeine currently being used,1 = Yes; 0 = No,Original,
+ROXI,Numeric,Roxicodone currently being used,1 = Yes; 0 = No,Original,
+OXYCO,Numeric,Oxycotine currently being used,1 = Yes; 0 = No,Original,
+PHENER_DOSE,Numeric,Phenergan dose (mg),Range: 0+,Original,
+PHENER_MO,Numeric,Phenergan start month,Range: 1-12,Original,
+PHENER_YR,Numeric,Phenergan start year,Range: 1900+,Original,
+VICO_DOSE,Numeric,Vicodin dose (mg),Range: 0+,Original,
+VICO_MO,Numeric,Vicodin start month,Range: 1-12,Original,
+VICO_YR,Numeric,Vicodin start year,Range: 1900+,Original,
+VIOX_DOSE,Numeric,Vioxx dose (mg),Range: 0+,Original,
+VIOX_MO,Numeric,Vioxx start month,Range: 1-12,Original,
+VIOX_YR,Numeric,Vioxx start year,Range: 1900+,Original,
+TRAM_DOSE,Numeric,Tramadol dose (mg),Range: 0+,Original,
+TRAM_MO,Numeric,Tramadol start month,Range: 1-12,Original,
+TRAM_YR,Numeric,Tramadol start year,Range: 1900+,Original,
+MORPH_DOSE,Numeric,Morphine patch dose (mg),Range: 0+,Original,
+MORPH_MO,Numeric,Morphine patch start month,Range: 1-12,Original,
+MORPH_YR,Numeric,Morphine patch start year,Range: 1900+,Original,
+CODE_DOSE,Numeric,Codeine dose (mg),Range: 0+,Original,
+CODE_MO,Numeric,Codeine start month,Range: 1-12,Original,
+CODE_YR,Numeric,Codeine start year,Range: 1900+,Original,
+ROXI_DOSE,Numeric,Roxicodone dose (mg),Range: 0+,Original,
+ROXI_MO,Numeric,Roxicodone start month,Range: 1-12,Original,
+ROXI_YR,Numeric,Roxicodone start year,Range: 1900+,Original,
+OXYCO_DOSE,Numeric,Oxycotine dose (mg),Range: 0+,Original,
+OXYCO_MO,Numeric,Oxycotine start month,Range: 1-12,Original,
+OXYCO_YR,Numeric,Oxycotine start year,Range: 1900+,Original,
+FOSAPREP,Numeric,Fosaprepitant currently being used,1 = Yes; 0 = No,Original,
+APREP,Numeric,Aprepitant currently being used,1 = Yes; 0 = No,Original,
+FOSAPREP_DOSE,Numeric,Fosaprepitant dose (mg),Range: 0+,Original,
+FOSAPREP_MO,Numeric,Fosaprepitant start month,Range: 1-12,Original,
+FOSAPREP_YR,Numeric,Fosaprepitant start year,Range: 1900+,Original,
+APREP_DOSE,Numeric,Aprepitant dose (mg),Range: 0+,Original,
+APREP_MO,Numeric,Aprepitant start month,Range: 1-12,Original,
+APREP_YR,Numeric,Aprepitant start year,Range: 1900+,Original,
+DYSPNEA,Character,Dyspnea/difficulty breathing,,Original,
+TROUB_BREATH,Character,Trouble with breathing (shortness of breath),,Original,
+HILL,Character,Hurrying on the level or up slight hill,,Original,
+ORD_PACE,Character,At ordinary pace on the level?,,Original,
+STOP_BREATH,Character,Do you stop for breath when walking at own pace?,,Original,
+STOP_100,Character,Do you stop for breath after 100 yards on the level?,,Original,
+PHYS_EXAM,Character,Physical examination,,Original,
+HR,Character,Heart rate (beats/min),,Original,
+HR_91_110,Character,91 to 110,,Original,
+HR_111,Character,111+,,Original,
+RALES,Character,Rales / crackles,,Original,
+L_LUNG_FIELD,Character,Either lower lung field,,Original,
+LOW_UP_LUNG,Character,Either lower and either upper lung field,,Original,
+JUG_DIS,Character,Jugulovenous distention,,Original,
+ALONE,Character,Alone,,Original,
+EDEMA,Character,Plus edema,,Original,
+HEP_MEG,Character,Plus hepatomegaly,,Original,
+X_RAY,Character,Chest x-ray film,,Original,
+CEPHAL,Character,Cephalization of pulmonary vessels,,Original,
+INTERST_EDEMA,Character,Interstitional edema,,Original,
+ALVEO_PLEUR,Character,Alveolar fluid plus pleural fluid,,Original,
+INT_EDEMA_PLEUR,Character,Interstitial edema plus pleural fluid,,Original,
+NHANES_HEART_FAILURE_COMPLETE,Numeric,NHANES Heart Failure completion status,"0 = Incomplete
+1 = Unverified
+2 = Complete",Original,
+QSTRAIN_MEDIS,Numeric,MEDIS Qstrain,Range: < 0,Original,
+DSCAN,Date,MRI Date,,Original,
+VOL5_LVEF,Numeric,EF (Blinded QM),Range: 0-100,Original,
+VOL5_LVEDV,Numeric,EDV (End-diastolic volume) (Blinded QM),Range: 0+,Original,
+VOL5_LVESV,Numeric,ESV (End-systolic volume) (Blinded QM),Range: 0+,Original,
+VOL5_LVMASS,Numeric,LV mass (Blinded QM),Range: 0+,Original,
+VOL5_SV,Numeric,Stroke Volume (Blinded QM),Range: 0+,Original,
+WT1_ARCHASC_MEANWALLTHICKNESS,Numeric,Mean Wall Thickness (Proximal / Ascending),Range: 0+,Original,
+WT1_ARCHDESC_MEANWALLTHICKNESS,Numeric,Mean Wall Thickness (Distal / Descending),Range: 0+,Original,
+PC1_ASC2DESC_DISTENS1,Numeric,Breath held distensibility ascending aorta (Ascending Descending),Range: 0+,Original,
+PC1_ASC2DESC_DISTENS2,Numeric,Breath held distensibility descending aorta (Ascending Descending),Range: 0+,Original,
+BMI,Numeric,BMI,Range: 0+,"WEIGHT_KG, HEIGHT_M",
+ADIP_INTRA_SURF_CM2,Numeric,Intraperitoneal adipose: Surf. (cm2),Range: 0+,Original,Baseline and 24 month only
+ADIP_RETRO_SURF_CM2,Numeric,Retroperitoneal adipose: Surf. (cm2),Range: 0+,Original,Baseline and 24 month only
+ADIP_VISC_SURF_CM2,Numeric,Visceral adipose: Surf. (cm2),Range: 0+,Original,Baseline and 24 month only
+ECV_LVMEAN,Numeric,ECV values of the whole LV mid section (mean of 8 segments),Range: 0+,Original,
+ECV_LVSEPTUM,Numeric,ECV values of the LV septum mid section (mean of segments 8 and 9),Range: 0+,Original,
+POSTT1BLOOD,Numeric,Post T1 blood pool values,Range: 0+,Original,
+POSTT1_LVMEAN,Numeric,Post T1 accepted values of the whole LV mid section (mean of 8 segments) and these values were used to calculate ECV,Range: 0+,Original,
+POSTT1_LVSEPTUM,Numeric,Post T1 accepted values of the LV Septum (mean of segments 8 and 9 only) and these values were used to calculate ECV,Range: 0+,Original,
+PRET1BLOOD,Numeric,Pre T1 blood pool values,Range: 0+,Original,
+PRET1_LVMEAN,Numeric,Native T1 (or pre-contrast T1) accepted values of the whole LV mid section (mean of 8 segments) and these values were used to calculate ECV,Range: 0+,Original,
+PRET1_LVSEPTUM,Numeric,Native T1 (or pre-contrast T1)accepted values of the LV Septum (mean of segments 8 and 9 only) and these values were used to calculate ECV,Range: 0+,Original,
+PRET1_ONLY_LVMEAN,Numeric,"Native T1 values (or pre-contrast T1) of the whole LV mid section (mean of 8 segments) of subjects who did not receive contrast at all, therefore, ECV was not calculated.",Range: 0+,Original,
+PRET1_ONLY_LVSEPTUM,Numeric,"Native T1 values (or pre-contrast T1) of the LV Septum (mean of segments 8 and 9 only) of subjects who did not receive contrast at all, therefore, ECV was not calculated.",Range: 0+,Original,
+T2_LVMEAN,Numeric,T2 values of the whole LV mid section (mean of 8 segments),Range: 0+,Original,
+T2_MEANSEPTUM,Numeric,T2 values of the LV septum mid section (mean of segments 8 and 9),Range: 0+,Original,
+DATE_FAT,Date,Fat Data Date,,Original,
+LONG_MUSCLE,Numeric,Long. Muscle,Range: 0+,Original,
+LONG_FAT,Numeric,Long. Fat,Range: 0+,Original,
+QUAD_MUSCLE,Numeric,Quad. Muscle,Range: 0+,Original,
+QUAD_FAT,Numeric,Quad Fat,Range: 0+,Original,
+PSOAS_MUSCLE,Numeric,Psoas Muscle,Range: 0+,Original,
+PSOAS_FAT,Numeric,Psoas Fat,Range: 0+,Original,
+RECTUS_MUSCLE,Numeric,Rectus Muscle,Range: 0+,Original,
+RECTUS_FAT,Numeric,Rectus Fat,Range: 0+,Original,
+RENAL_FAT,Numeric,Renal Fat,Range: 0+,Original,
+OTHER_MUSCLEFAT,Numeric,Other musc/fat,Range: 0+,Original,
+RETRO_FAT,Numeric,Retro Fat,Range: 0+,Original,
+INTRA_FAT,Numeric,Intra Fat,Range: 0+,Original,
+SUBCUTANEOUS_FAT,Numeric,Subcutaneous fat,Range: 0+,Original,
+TOTAL_MUSCLE,Numeric,Total Muscle (Long + Quad + Psoas + Rectus),Range: 0+,Original,
+TOTAL_MUSCLE_FAT,Numeric,Total Muscle Fat (Long + Quad + Psoas + Rectus),Range: 0+,Original,
+TOTAL_VISCERAL_FAT,Numeric,Total Visceral Fat (Retro + Intra),Range: 0+,Original,
+FATMUSCRATIO,Numeric,"Fat / Muscle Ratio (Long, Quad, Psoas, Rectus)",Range: 0+,Original,
+TOTAL_MUSCLE_PERI,Numeric,Total Muscle - Perispinal (Long + Quad + Psoas),Range: 0+,Original,
+TOTAL_MUSCLE_FAT_PERI,Numeric,Total Muscle Fat - Perispinal (Long + Quad + Psoas),Range: 0+,Original,
+FATMUSCRATIO_PERI,Numeric,"Fat / Muscle Ratio - Perispinal (Long, Quad, Psoas)",Range: 0+,Original,
