@@ -2,26 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Example - example-guide-concepts-1-production</title>
+  <title>Visual CVD</title>
+  <link rel="shortcut icon" href="images/heart.png" type="image/png">
   
-
-  <script src="//code.angularjs.org/1.8.0/angular.min.js"></script>
-  
-
-  
+  <!-- Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>    
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-resource.js"></script>
+  <script src="scripts/jquery-csv.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="scripts/boxes.js"></script>
 </head>
-<body >
-  <div ng-app ng-init="qty=1;cost=2">
-  <b>Invoice:</b>
+
+<body>
+  <div ng-app="boxesApp" ng-controller="boxesCtrl">
+  <b>LVESV</b>
   <div>
-    Quantity: <input type="number" min="0" ng-model="qty">
+    Value: <input type="number" min="0" ng-model="lvesv">
+  </div>
+  <b>LVEF</b>
+  <div>
+    Value: <input type="number" min="0" ng-model="lvef">
   </div>
   <div>
-    Costs: <input type="number" min="0" ng-model="cost">
+    <button ng-click="compare()">Compare</button>
   </div>
-  <div>
-    <b>Total:</b> {{qty * cost | currency}}
+  <div id='boxes'></div>
   </div>
-</div>
 </body>
 </html>
