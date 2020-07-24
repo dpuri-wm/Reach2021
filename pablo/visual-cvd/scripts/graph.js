@@ -8,6 +8,7 @@ app.controller("graphCtrl", function($scope) {
     var fr=new FileReader(); 
     fr.onload=function(){
       $scope.csvObjs = $.csv.toObjects(fr.result);
+      $scope.columns = Object.keys($scope.csvObjs[0]);
     } 
     
     fr.readAsText(this.files[0]);

@@ -5,6 +5,10 @@
   <title>Visual CVD</title>
   <link rel="shortcut icon" href="images/heart.png" type="image/png">
   
+  <!-- CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="https://mattduck.github.io/generic-css/css/generic-dark.min.css" rel="stylesheet" type="text/css">
+
   <!-- Libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>    
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.js"></script>
@@ -12,6 +16,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="scripts/jquery-csv.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
   
   <!-- Scripts -->
   <script src="scripts/graph.js"></script>
@@ -21,6 +26,11 @@
   <div ng-app="graphApp" ng-controller="graphCtrl">
     <div>
       <input type="file" name="inputfile" id="inputfile">
+    </div>
+    <div>
+      <select class="csv-options" name="column">
+        <option ng-repeat="x in columns" value={{x}}>{{x}}</option>
+      </select>
     </div>
     <b>LVESV</b>
     <div>
@@ -35,5 +45,8 @@
     </div>
     <div id='graph'></div>
   </div>
+
+  <!-- Scripts -->
+  <script src="scripts/select2.js"></script>
 </body>
 </html>
