@@ -9,27 +9,31 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>    
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-resource.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="scripts/jquery-csv.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   
-  <!-- Scripts -->>
-  <script src="scripts/boxes.js"></script>
+  <!-- Scripts -->
+  <script src="scripts/graph.js"></script>
 </head>
 
 <body>
-  <div ng-app="boxesApp" ng-controller="boxesCtrl">
-  <b>LVESV</b>
-  <div>
-    Value: <input type="number" min="0" ng-model="lvesv">
-  </div>
-  <b>LVEF</b>
-  <div>
-    Value: <input type="number" min="0" ng-model="lvef">
-  </div>
-  <div>
-    <button ng-click="compare()">Compare</button>
-  </div>
-  <div id='boxes'></div>
+  <div ng-app="graphApp" ng-controller="graphCtrl">
+    <div>
+      <input type="file" name="inputfile" id="inputfile">
+    </div>
+    <b>LVESV</b>
+    <div>
+      Value: <input type="number" min="0" ng-model="lvesv">
+    </div>
+    <b>LVEF</b>
+    <div>
+      Value: <input type="number" min="0" ng-model="lvef">
+    </div>
+    <div>
+      <button ng-click="compare()">Compare</button>
+    </div>
+    <div id='graph'></div>
   </div>
 </body>
 </html>
