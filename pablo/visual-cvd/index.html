@@ -6,48 +6,64 @@
   <link rel="shortcut icon" href="images/heart.png" type="image/png">
   
   <!-- CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.rawgit.com/angular-ui/ui-select/master/dist/select.min.css">
   <link href="https://mattduck.github.io/generic-css/css/generic-dark.min.css" rel="stylesheet" type="text/css">
   <link href="style/custom.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
 
   <!-- Libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>    
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-resource.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-sanitize.js"></script>
+  <script src="https://cdn.rawgit.com/angular-ui/ui-select/master/dist/select.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="scripts/jquery-csv.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-  
+
+
+
   <!-- Scripts -->
   <script src="scripts/graph.js"></script>
 </head>
 
 <body>
   <div ng-app="graphApp" ng-controller="graphCtrl" class="center">
-    <div>
-      <input type="file" name="inputfile" id="inputfile">
-    </div>
-    <div>
-      <select class="csv-options" name="column">
-        <option ng-repeat="x in columns" value={{x}}>{{x}}</option>
-      </select>
-    </div>
-    <b>LVESV</b>
-    <div>
-      Value: <input type="number" min="0" ng-model="lvesv">
-    </div>
-    <b>LVEF</b>
-    <div>
-      Value: <input type="number" min="0" ng-model="lvef">
-    </div>
-    <div>
-      <button ng-click="compare()">Compare</button>
-    </div>
-    <div id='graph'></div>
+    <form name="myForm">
+      <div>
+        <input type="file" name="inputfile" id="inputfile">
+      </div>
+      <div>
+        <ui-select tagging tagging-label="('new')" ng-model="columns.columnName" theme="selectize" title="Choose what to compare">
+          <ui-select-match placeholder="Choose a column...">{{$select.selected}}</ui-select-match>
+          <ui-select-choices repeat="option in columns.availableOptions | filter: $select.search">
+            <div ng-bind-html="option | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <div>
+        <b>Month 0:</b>
+      </div>
+      <div>
+        <input id="month0" type="number" min="0" ng-model="month0">
+      </div>
+      <div>
+        <b>Month 3:</b>
+      </div>
+      <div>
+        <input id="month3" type="number" min="0" ng-model="month3">
+      </div>
+      <div>
+        <b>Month 24:</b>
+      </div>
+      <div>
+        <input id="month24" type="number" min="0" ng-model="month24">
+      </div>
+      <div>
+        <button ng-click="compare()">Compare</button>
+      </div>
+      <div id='graph'></div>
+    </form>
   </div>
-
-  <!-- Scripts -->
-  <script src="scripts/select2.js"></script>
 </body>
 </html>
