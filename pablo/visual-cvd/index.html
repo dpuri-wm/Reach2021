@@ -10,6 +10,7 @@
   <link href="https://mattduck.github.io/generic-css/css/generic-dark.min.css" rel="stylesheet" type="text/css">
   <link href="style/custom.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+  <link rel="stylesheet" href="style/bebas.css" type="text/css">
 
   <!-- Libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>    
@@ -27,43 +28,44 @@
   <script src="scripts/graph.js"></script>
 </head>
 
-<body>
-  <div ng-app="graphApp" ng-controller="graphCtrl" class="center">
-    <form name="myForm">
+<body class="center" style="color:#4FA1B8;">
+  <div id="banner">
+      <img src="images/heart.png" alt="heart logo" style="height:150px;width:150px">
+      <span><p id="app-name">Visual CVD</p></span>
+  </div>
+  <div ng-app="graphApp" ng-controller="graphCtrl">
+    <form name="myForm" class="center">
       <div>
         <input type="file" name="inputfile" id="inputfile">
       </div>
+      <br/>
       <div>
-        <ui-select tagging tagging-label="('new')" ng-model="columns.columnName" theme="selectize" title="Choose what to compare">
+        <ui-select tagging tagging-label="('new')" ng-model="columns.columnName" theme="selectize" title="Choose what to compare" style="width:250px;">
           <ui-select-match placeholder="Choose a column...">{{$select.selected}}</ui-select-match>
           <ui-select-choices repeat="option in columns.availableOptions | filter: $select.search">
             <div ng-bind-html="option | highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>
       </div>
-      <div>
-        <b>Month 0:</b>
-      </div>
+      <label for="month0"><b>Month 0:</b></label>
       <div>
         <input id="month0" type="number" min="0" ng-model="month0">
       </div>
-      <div>
-        <b>Month 3:</b>
-      </div>
+      <br/>
+      <label for="month3"><b>Month 3:</b></label>
       <div>
         <input id="month3" type="number" min="0" ng-model="month3">
       </div>
-      <div>
-        <b>Month 24:</b>
-      </div>
+      <br/>
+      <label for="month24"><b>Month 24:</b></label>
       <div>
         <input id="month24" type="number" min="0" ng-model="month24">
       </div>
-      <div>
+      <div class="center">
         <button ng-click="compare()">Compare</button>
       </div>
-      <div id='graph'></div>
     </form>
+    <div id='graph'></div>
   </div>
 </body>
 </html>

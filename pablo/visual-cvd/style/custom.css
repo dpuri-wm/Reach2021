@@ -3,3 +3,17 @@
     width: 50%;
     padding: 10px;
   }
+
+#banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #4FA1B8;
+    height: 200px;
+}
+
+#app-name {
+    font-family: 'bebas_neueregular';
+    font-size: 100px;
+    color: #161318;
+}

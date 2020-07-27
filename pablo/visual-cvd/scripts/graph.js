@@ -60,6 +60,17 @@ app.controller("graphCtrl", function($scope) {
       data.push(obj);
     };
   
+    var patientColor = 'rgb(0, 0, 0)';
+    // choose a color for patient input
+    if ($scope.columns.columnName == "vol5_lvef") {
+      if ((($scope.month0 - $scope.month0/20) > $scope.month24) || ($scope.month0/2 > $scope.month24)) {
+        patientColor = blue;
+      } else {
+        patientColor = red;
+      }
+    }
+    
+
     let obj = {
       type: 'scatter',
       x: [0, 3, 24],
@@ -67,15 +78,15 @@ app.controller("graphCtrl", function($scope) {
       mode: 'lines',
       name: 'patient',
       line: {
-        color: 'rgb(219, 64, 82)', //temp
+        color: patientColor,
         width: 5
       }
     }
     data.push(obj);
 
     var layout = {
-      width: 500,
-      height: 500
+      width: 650,
+      height: 650
     };
 
     Plotly.newPlot('graph', data, layout);
