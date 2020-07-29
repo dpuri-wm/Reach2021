@@ -50,81 +50,142 @@ app.controller("graphCtrl", function($scope) {
       lines[obj.ID].push(obj[$scope.columns.columnName]);
     }
 
-    // make graph
-    lines = Object.entries(lines);
-    var red = 'rgb(219, 64, 82)';
-    var blue = 'rgb(55, 128, 191)';
-    var data = [];
-    for (var i = 0; i < lines.length; i++) {
-      if (lines[i][1][0] == 0) {
-        var lineColor = blue;
-      } else {
-        var lineColor = red;
+    if ($scope.mode == "scatter") {
+      // make graph
+      lines = Object.entries(lines);
+      var red = 'rgb(219, 64, 82)';
+      var blue = 'rgb(55, 128, 191)';
+      var data = [];
+      for (var i = 0; i < lines.length; i++) {
+        if (lines[i][1][0] == 0) {
+          var lineColor = blue;
+        } else {
+          var lineColor = red;
+        }
+        var label = lines[i][1].shift();
+        var obj = {
+          type: $scope.mode,
+          x: $scope.dates.months,
+          y: lines[i][1],
+          mode: 'lines',
+          name: lines[i][0],
+          line: {
+              color: lineColor,
+              width: 1
+          }
+        }
+        data.push(obj);
+      };
+    
+      //hardcoded
+      var patientColor = 'rgb(0, 0, 0)';
+      var barName = "patient";
+      // choose a color for patient input
+      if ($scope.columns.columnName == "vol5_lvef") {
+        if ((($scope.month0 - $scope.month0/20) > $scope.month24) || ($scope.month0/2 > $scope.month24)) {
+          patientColor = blue;
+          if ($scope.mode == "bar") {
+            barName = 0;
+          }
+        } else {
+          patientColor = red;
+          if ($scope.mode == "bar") {
+            barName = 1;
+          }
+        }
       }
-      var label = lines[i][1].shift();
+      //hardcoded
+
       var obj = {
         type: $scope.mode,
         x: $scope.dates.months,
-        y: lines[i][1],
-      }
-      if ($scope.mode == "scatter") {
-        obj['mode'] = 'lines'
-        obj['name'] = lines[i][0]
-        obj['line'] = {
-            color: lineColor,
-            width: 1
+        y: $scope.dates.input,
+        mode: 'lines',
+        name: 'patient',
+        line: {
+            color: patientColor,
+            width: 5
         }
-      } else if ($scope.mode == "bar") {
-        obj[name] = label;
       }
       data.push(obj);
-    };
-  
-    //hardcoded
-    var patientColor = 'rgb(0, 0, 0)';
-    var barName = "patient";
-    // choose a color for patient input
-    if ($scope.columns.columnName == "vol5_lvef") {
-      if ((($scope.month0 - $scope.month0/20) > $scope.month24) || ($scope.month0/2 > $scope.month24)) {
-        patientColor = blue;
-        if ($scope.mode == "bar") {
-          barName = 0;
-        }
-      } else {
-        patientColor = red;
-        if ($scope.mode == "bar") {
-          barName = 1;
-        }
+
+      var layout = {
+        width: 650,
+        height: 650
+      };
+
+      Plotly.newPlot('graph', data, layout);
+    }
+    else if ($scope.mode == "bar") {
+      var data = [];
+      var chartData = {};
+
+      for (var i = 0; i < $scope.dates.months.length; i++) {
+        chartData[$scope.dates.months[i]] = {};
       }
-    }
-    //hardcoded
 
-    var obj = {
-      type: $scope.mode,
-      x: $scope.dates.months,
-      y: $scope.dates.input,
-    };
-    if ($scope.mode == "scatter") {
-      obj['mode'] = 'lines',
-      obj['name'] = 'patient',
-      obj['line'] = {
-          color: patientColor,
-          width: 5
+      for (var i = 0; i < $scope.csvObjs.length; i++) {
+        var currObj = $scope.csvObjs[i];
+        var currMonth = currObj[$scope.columns.timeName];
+        var currCategory = currObj[$scope.columns.columnName];
+        // {month0: {1: [notHealthy, healthy], 2:...}, month3: {...}, month24: {...}}
+        if (chartData[currMonth] === undefined || !(currCategory in chartData[currMonth])) {
+          chartData[currMonth][currCategory] = [0, 0];
+        }
+        chartData[currMonth][currCategory][currObj["Label"]]++; // hardcoded
       }
-    } else if ($scope.mode == "bar") {
-      obj[name] = barName;
+
+      // for each month
+      for (var i = 0; i < $scope.dates.months.length; i++) {
+        var numOfPat = {healthy: [], unhealthy: []};
+        console.log(Object.values(chartData[$scope.dates.months[i]]).length)
+        Object.values(chartData[$scope.dates.months[i]]).forEach( function (category, index) {
+          numOfPat.healthy.push(category[0]);
+          numOfPat.unhealthy.push(category[1]);
+        });
+        var bar1 = {
+          x: Object.keys(chartData[$scope.dates.months[i]]),
+          y: numOfPat.healthy,
+          type: "bar",
+          name: Object.keys(numOfPat)[0], 
+          xaxis: 'x' + String(i + 1),
+          barmode: 'stack', 
+          marker: {color: '#00f'} //hardcoded
+        }
+
+        var bar2 = {
+          x: Object.keys(chartData[$scope.dates.months[i]]),
+          y: numOfPat.unhealthy,
+          type: "bar",
+          name: Object.keys(numOfPat)[1], 
+          xaxis: 'x' + String(i + 1),
+          barmode: 'stack', 
+          marker: {color: '#f00'} //hardcoded
+        }
+
+        data.push(bar1, bar2);
+      };
+
+      layout = {
+        width: 650,
+        height: 650,
+        barmode: "stack",
+        //yaxis: {tickformat: '%'},
+      }
+
+      for (var i = 0; i < $scope.dates.months.length; i++) {
+        var keyName = "xaxis";
+        if (i + 1 != 1) {
+          keyName += String(i + 1);
+        }
+        layout[keyName] = {
+          domain: [i * (1/($scope.dates.months.length)), (i * (1/($scope.dates.months.length))) + (1/($scope.dates.months.length))],
+          anchor: 'x' + String(i + 1),
+          title: 'Month ' + String($scope.dates.months[i])
+        };
+      }
+
+      Plotly.newPlot('graph', data, layout);
     }
-    data.push(obj);
-
-    var layout = {
-      width: 650,
-      height: 650
-    };
-
-    if ($scope.mode == "bar") {
-      layout['barmode'] = 'stack';
-    }
-
-    Plotly.newPlot('graph', data, layout);
   }
 });
