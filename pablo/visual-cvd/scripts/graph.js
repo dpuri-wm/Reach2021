@@ -82,7 +82,7 @@ app.controller("graphCtrl", function($scope) {
       var barName = "patient";
       // choose a color for patient input
       if ($scope.columns.columnName == "vol5_lvef") {
-        if ((($scope.month0 - $scope.month0/20) > $scope.month24) || ($scope.month0/2 > $scope.month24)) {
+        if ((50 > $scope.month24) || (($scope.month3 - $scope.month24) > 10)) {
           patientColor = blue;
           if ($scope.mode == "bar") {
             barName = 0;
@@ -138,7 +138,6 @@ app.controller("graphCtrl", function($scope) {
       // for each month
       for (var i = 0; i < $scope.dates.months.length; i++) {
         var numOfPat = {healthy: [], unhealthy: []};
-        console.log(Object.values(chartData[$scope.dates.months[i]]).length)
         Object.values(chartData[$scope.dates.months[i]]).forEach( function (category, index) {
           numOfPat.healthy.push(category[0]);
           numOfPat.unhealthy.push(category[1]);
@@ -150,7 +149,7 @@ app.controller("graphCtrl", function($scope) {
           name: Object.keys(numOfPat)[0], 
           xaxis: 'x' + String(i + 1),
           barmode: 'stack', 
-          marker: {color: '#00f'} //hardcoded
+          marker: {color: '#00f'}
         }
 
         var bar2 = {
@@ -160,17 +159,36 @@ app.controller("graphCtrl", function($scope) {
           name: Object.keys(numOfPat)[1], 
           xaxis: 'x' + String(i + 1),
           barmode: 'stack', 
-          marker: {color: '#f00'} //hardcoded
+          marker: {color: '#f00'}
         }
 
         data.push(bar1, bar2);
       };
 
+      var barColor = '#000';
+      if ($scope.dates.input.length > 0 && $scope.columns.columnName == "vol5_lvef") {
+        if ((50 > $scope.month24) || (($scope.month3 - $scope.month24) > 10)) {
+          barColor = '#f00';
+        } else {
+          barColor = '00f';
+        }
+      }
+      $scope.dates.input.forEach( function (entry, index) {
+        data.push({
+          x: [entry],
+          y: [1],
+          type: "bar",
+          name: "patient",
+          xaxis: 'x' + String(index + 1),
+          barmode: 'stack',
+          marker: {color: barColor}
+        });
+      });
+
       layout = {
         width: 650,
         height: 650,
-        barmode: "stack",
-        //yaxis: {tickformat: '%'},
+        barmode: "stack"
       }
 
       for (var i = 0; i < $scope.dates.months.length; i++) {
