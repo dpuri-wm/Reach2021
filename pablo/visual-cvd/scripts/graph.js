@@ -61,42 +61,58 @@ app.controller("graphCtrl", function($scope) {
       } else {
         var lineColor = red;
       }
-      lines[i][1].shift();
-      let obj = {
-        type: 'scatter',
+      var label = lines[i][1].shift();
+      var obj = {
+        type: $scope.mode,
         x: $scope.dates.months,
         y: lines[i][1],
-        mode: 'lines',
-        name: lines[i][0],
-        line: {
-          color: lineColor,
-          width: 1
+      }
+      if ($scope.mode == "scatter") {
+        obj['mode'] = 'lines'
+        obj['name'] = lines[i][0]
+        obj['line'] = {
+            color: lineColor,
+            width: 1
         }
+      } else if ($scope.mode == "bar") {
+        obj[name] = label;
       }
       data.push(obj);
     };
   
+    //hardcoded
     var patientColor = 'rgb(0, 0, 0)';
+    var barName = "patient";
     // choose a color for patient input
     if ($scope.columns.columnName == "vol5_lvef") {
       if ((($scope.month0 - $scope.month0/20) > $scope.month24) || ($scope.month0/2 > $scope.month24)) {
         patientColor = blue;
+        if ($scope.mode == "bar") {
+          barName = 0;
+        }
       } else {
         patientColor = red;
+        if ($scope.mode == "bar") {
+          barName = 1;
+        }
       }
     }
-    
+    //hardcoded
 
-    let obj = {
-      type: 'scatter',
+    var obj = {
+      type: $scope.mode,
       x: $scope.dates.months,
       y: $scope.dates.input,
-      mode: 'lines',
-      name: 'patient',
-      line: {
-        color: patientColor,
-        width: 5
+    };
+    if ($scope.mode == "scatter") {
+      obj['mode'] = 'lines',
+      obj['name'] = 'patient',
+      obj['line'] = {
+          color: patientColor,
+          width: 5
       }
+    } else if ($scope.mode == "bar") {
+      obj[name] = barName;
     }
     data.push(obj);
 
@@ -104,6 +120,10 @@ app.controller("graphCtrl", function($scope) {
       width: 650,
       height: 650
     };
+
+    if ($scope.mode == "bar") {
+      layout['barmode'] = 'stack';
+    }
 
     Plotly.newPlot('graph', data, layout);
   }

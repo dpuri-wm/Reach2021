@@ -60,15 +60,15 @@
       </div>
 
       <div>
-        <input type="radio" id="categorical" name="type" value="categorical" ng-model="mode">
+        <input type="radio" id="categorical" name="type" value="bar" ng-model="mode">
         <label for="categorical">Categorical</label><br/>
-        <input type="radio" id="range" name="type" value="range" ng-model="mode">
+        <input type="radio" id="range" name="type" value="scatter" ng-model="mode">
         <label for="range">Range</label><br/>
       </div>
 
       <div ng-repeat="month in dates.months track by $index">
         <label for="month{{month}}"><b>Month {{month}}:</b></label>
-        <input id="month{{month}}" type="number" ng-model="dates.input[$index]">
+        <input id="month{{month}}" type="number" step="any" ng-model="dates.input[$index]">
         <br/>
       </div>
       <div class="center">
