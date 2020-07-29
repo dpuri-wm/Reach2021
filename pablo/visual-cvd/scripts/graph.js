@@ -4,6 +4,7 @@ app.controller("graphCtrl", function($scope) {
   $scope.csvObjs = null;
   $scope.columns = {
     columnName: null,
+    timeName: null,
     availableOptions: []
   }
 
@@ -21,6 +22,21 @@ app.controller("graphCtrl", function($scope) {
     
     fr.readAsText(this.files[0]);
   });
+
+  $scope.mode = null;
+
+  //make it so month options update before comparison
+  $scope.dates = {
+    getDates: function () {
+      var tempMonths = new Set();
+      for (var i = 0; i < $scope.csvObjs.length; i++) {
+        tempMonths.add($scope.csvObjs[i][$scope.columns.timeName]);
+        $scope.dates.months = Array.from(tempMonths);
+      }
+    },
+    months: [],
+    input: []
+  }
 
   $scope.compare = function () {
 
@@ -48,7 +64,7 @@ app.controller("graphCtrl", function($scope) {
       lines[i][1].shift();
       let obj = {
         type: 'scatter',
-        x: [0, 3, 24],
+        x: $scope.dates.months,
         y: lines[i][1],
         mode: 'lines',
         name: lines[i][0],
@@ -73,8 +89,8 @@ app.controller("graphCtrl", function($scope) {
 
     let obj = {
       type: 'scatter',
-      x: [0, 3, 24],
-      y: [$scope.month0, $scope.month3, $scope.month24],
+      x: $scope.dates.months,
+      y: $scope.dates.input,
       mode: 'lines',
       name: 'patient',
       line: {

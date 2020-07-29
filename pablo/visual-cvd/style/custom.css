@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'bebas_neueregular';
+    src: url('fonts/bebasneue-regular-webfont.woff2') format('woff2'),
+         url('fonts/bebasneue-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .center {
     margin: auto;
     width: 50%;
@@ -13,7 +21,6 @@
 }
 
 #app-name {
-    font-family: 'bebas_neueregular';
     font-size: 100px;
     color: #161318;
 }

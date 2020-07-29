@@ -10,7 +10,6 @@
   <link href="https://mattduck.github.io/generic-css/css/generic-dark.min.css" rel="stylesheet" type="text/css">
   <link href="style/custom.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
-  <link rel="stylesheet" href="style/bebas.css" type="text/css">
 
   <!-- Libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>    
@@ -28,10 +27,10 @@
   <script src="scripts/graph.js"></script>
 </head>
 
-<body class="center" style="color:#4FA1B8;">
+<body class="center" style="color:#4FA1B8;font-family:bebas_neueregular">
   <div id="banner">
       <img src="images/heart.png" alt="heart logo" style="height:150px;width:150px">
-      <span><p id="app-name">Visual CVD</p></span>
+      <span><p id="app-name" name="bebas">Visual CVD</p></span>
   </div>
   <div ng-app="graphApp" ng-controller="graphCtrl">
     <form name="myForm" class="center">
@@ -39,27 +38,38 @@
         <input type="file" name="inputfile" id="inputfile">
       </div>
       <br/>
+
       <div>
-        <ui-select tagging tagging-label="('new')" ng-model="columns.columnName" theme="selectize" title="Choose what to compare" style="width:250px;">
+        <label for="chooseColumn">Choose what to compare</label>
+        <ui-select tagging tagging-label="('new')" ng-model="columns.columnName" theme="selectize" title="Choose what to compare" style="width:250px;" id="chooseColumn">
           <ui-select-match placeholder="Choose a column...">{{$select.selected}}</ui-select-match>
           <ui-select-choices repeat="option in columns.availableOptions | filter: $select.search">
             <div ng-bind-html="option | highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>
       </div>
-      <label for="month0"><b>Month 0:</b></label>
+
       <div>
-        <input id="month0" type="number" ng-model="month0">
+        <label for="chooseTime">Choose time column</label>
+        <ui-select tagging tagging-label="('new')" ng-model="columns.timeName" theme="selectize" title="Choose time column" style="width:250px;" id="chooseTime" on-select="dates.getDates()">
+          <ui-select-match placeholder="Choose a column...">{{$select.selected}}</ui-select-match>
+          <ui-select-choices repeat="option in columns.availableOptions | filter: $select.search">
+            <div ng-bind-html="option | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
       </div>
-      <br/>
-      <label for="month3"><b>Month 3:</b></label>
+
       <div>
-        <input id="month3" type="number" ng-model="month3">
+        <input type="radio" id="categorical" name="type" value="categorical" ng-model="mode">
+        <label for="categorical">Categorical</label><br/>
+        <input type="radio" id="range" name="type" value="range" ng-model="mode">
+        <label for="range">Range</label><br/>
       </div>
-      <br/>
-      <label for="month24"><b>Month 24:</b></label>
-      <div>
-        <input id="month24" type="number" ng-model="month24">
+
+      <div ng-repeat="month in dates.months track by $index">
+        <label for="month{{month}}"><b>Month {{month}}:</b></label>
+        <input id="month{{month}}" type="number" ng-model="dates.input[$index]">
+        <br/>
       </div>
       <div class="center">
         <button ng-click="compare()">Compare</button>
