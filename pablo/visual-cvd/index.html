@@ -10,6 +10,7 @@
   <link href="https://mattduck.github.io/generic-css/css/generic-dark.min.css" rel="stylesheet" type="text/css">
   <link href="style/custom.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
   <!-- Libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>    
@@ -34,7 +35,10 @@
   </div>
   <div ng-app="graphApp" ng-controller="graphCtrl">
     <form name="myForm" class="center">
-      <div>
+      <div class="center">
+        <label for="inputfile" class="custom-file-upload">
+          <i class="fa fa-cloud-upload"></i> Upload CSV
+        </label>
         <input type="file" name="inputfile" id="inputfile">
       </div>
       <br/>
@@ -57,20 +61,23 @@
             <div ng-bind-html="option | highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>
+        <br/>
       </div>
 
       <div>
         <input type="radio" id="categorical" name="type" value="bar" ng-model="mode">
         <label for="categorical">Categorical</label><br/>
-        <input type="radio" id="range" name="type" value="scatter" ng-model="mode">
-        <label for="range">Range</label><br/>
+        <input type="radio" id="numerical" name="type" value="scatter" ng-model="mode">
+        <label for="numerical">Numerical</label><br/>
       </div>
+      <br/>
 
       <div ng-repeat="month in dates.months track by $index">
         <label for="month{{month}}"><b>Month {{month}}:</b></label>
         <input id="month{{month}}" type="number" step="any" ng-model="dates.input[$index]">
         <br/>
       </div>
+      <br/>
       <div class="center">
         <button ng-click="compare()">Compare</button>
       </div>
