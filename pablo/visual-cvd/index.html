@@ -41,7 +41,6 @@
         </label>
         <input type="file" name="inputfile" id="inputfile">
       </div>
-      <br/>
 
       <div>
         <label for="chooseColumn">Choose what to compare</label>
@@ -61,7 +60,6 @@
             <div ng-bind-html="option | highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>
-        <br/>
       </div>
 
       <div>
@@ -70,14 +68,11 @@
         <input type="radio" id="numerical" name="type" value="scatter" ng-model="mode">
         <label for="numerical">Numerical</label><br/>
       </div>
-      <br/>
 
       <div ng-repeat="month in dates.months track by $index">
         <label for="month{{month}}"><b>Month {{month}}:</b></label>
         <input id="month{{month}}" type="number" step="any" ng-model="dates.input[$index]">
-        <br/>
       </div>
-      <br/>
       <div class="center">
         <button ng-click="compare()">Compare</button>
       </div>

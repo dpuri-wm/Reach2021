@@ -128,11 +128,13 @@ app.controller("graphCtrl", function($scope) {
         var currObj = $scope.csvObjs[i];
         var currMonth = currObj[$scope.columns.timeName];
         var currCategory = currObj[$scope.columns.columnName];
-        // {month0: {1: [notHealthy, healthy], 2:...}, month3: {...}, month24: {...}}
-        if (chartData[currMonth] === undefined || !(currCategory in chartData[currMonth])) {
-          chartData[currMonth][currCategory] = [0, 0];
+        if (!(currCategory == -16.61755714)) { //null entry check
+          // {month0: {1: [notHealthy, healthy], 2:...}, month3: {...}, month24: {...}}
+          if (chartData[currMonth] === undefined || !(currCategory in chartData[currMonth])) {
+            chartData[currMonth][currCategory] = [0, 0];
+          }
+          chartData[currMonth][currCategory][currObj["Label"]]++; // hardcoded
         }
-        chartData[currMonth][currCategory][currObj["Label"]]++; // hardcoded
       }
 
       // for each month
